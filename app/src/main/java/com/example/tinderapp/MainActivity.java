@@ -8,13 +8,17 @@ import android.widget.Toast;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> al;
+    private ArrayList<String> aR;
     private ArrayAdapter<String> arrayAdapter;
     private int i;
+    Sender s= new Sender();
+    private int contor = 0;
 
 
 
@@ -36,6 +40,18 @@ public class MainActivity extends AppCompatActivity {
 
         arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al );
 
+        aR = new ArrayList<>();
+        aR.add("php");
+        aR.add("c");
+        aR.add("python");
+        aR.add("java");
+        aR.add("html");
+        aR.add("c++");
+        aR.add("css");
+        aR.add("javascript");
+
+
+
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -49,20 +65,30 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
+                //contor++;
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                contor++;
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
+
+
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                //String str = arrayAdapter.toString();
+               // ArrayList str = new ArrayList();
+                String str = al.get(contor);
+                s.Send_data(aR.get(contor));
+                contor++;
             }
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
+                aR.add("XML ".concat(String.valueOf(i)));
                 al.add("XML ".concat(String.valueOf(i)));
                 arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
