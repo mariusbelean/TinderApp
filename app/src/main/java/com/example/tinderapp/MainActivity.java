@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRightCardExit(Object dataObject) {
 
-
+                //abc
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
                 //String str = arrayAdapter.toString();
                // ArrayList str = new ArrayList();

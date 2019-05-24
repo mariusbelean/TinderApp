@@ -16,7 +16,7 @@ public class Sender extends AppCompatActivity {
     private String txt;
     private PrintWriter writer;
 
-
+    //nnn
     public void Send_data(String stg){
         String message = stg;
 
