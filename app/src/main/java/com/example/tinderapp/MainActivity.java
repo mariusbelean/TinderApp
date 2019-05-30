@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> al;
     //private ArrayList<String> aR;
-
+    Sender sender = new Sender();
 
     //private ArrayAdapter<String> arrayAdapter;
     private int i;
@@ -97,11 +97,22 @@ public class MainActivity extends AppCompatActivity {
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
 
+                FirebaseUser fuser;
+                fuser = FirebaseAuth.getInstance().getCurrentUser();
+                sender.execute(fuser.getDisplayName());
+
+
                 cards obj = (cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(oppositeUserType).child(userId).child("connections").child("nope").child(currentUId).setValue(true);
 
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+                //sender.execute("Left Swipe");
                 //contor++;
             }
 
@@ -116,11 +127,8 @@ public class MainActivity extends AppCompatActivity {
                 isConnectionMatch(userId);
                 
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-                //String str = arrayAdapter.toString();
-               // ArrayList str = new ArrayList();
-                //String str = al.get(contor);
-                //s.Send_data(aR.get(contor));
-                //contor++;
+                sender.execute("Right Swipe");
+
             }
 
             @Override
